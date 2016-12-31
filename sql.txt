@@ -1,0 +1,217 @@
+-- -----------------------------------------------------
+-- Table DATABASENAME.case_details
+-- -----------------------------------------------------
+
+CREATE TABLE IF NOT EXISTS case_details (
+  case_id INT NOT NULL,
+  production_line INT NULL,
+  issue_report_time TIMESTAMP NULL,
+  issue_reported VARCHAR(100) NULL,
+  action_taken VARCHAR(200) NULL,
+  comments VARCHAR(500) NULL,
+  PRIMARY KEY (case_id));
+
+
+-- -----------------------------------------------------
+-- Table DATABASENAME.sensor_table
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS sensor_table (
+  sensor_id INT NOT NULL,
+  sensor_address VARCHAR(45) NULL,
+  sensor_value INT NULL,
+  sensor_record_time TIMESTAMP NULL,
+  PRIMARY KEY (sensor_id));
+
+
+
+-- -----------------------------------------------------
+-- Data for table DATABASENAME.case_details
+-- -----------------------------------------------------
+
+INSERT INTO case_details (case_id, production_line, issue_report_time, issue_reported, action_taken, comments) VALUES (1, 1, '2016-10-23 17:50:23', 'Value below ideal', 'Notified the PL manager', 'PL manager would take care, routine defect');
+INSERT INTO case_details (case_id, production_line, issue_report_time, issue_reported, action_taken, comments) VALUES (2, 4, '2016-10-23 18:40:23', 'Value above ideal', 'Switched on the actuators', 'Remedial action taken by the administrator');
+INSERT INTO case_details (case_id, production_line, issue_report_time, issue_reported, action_taken, comments) VALUES (3, 2, '2016-10-23 19:50:23', 'Value above ideal', 'Notified the PL manager', 'needs immediate attention');
+INSERT INTO case_details (case_id, production_line, issue_report_time, issue_reported, action_taken, comments) VALUES (4, 3, '2016-10-23 20:50:23', 'Value below ideal', 'Notified the PL manager', 'Routine maintenance defect');
+INSERT INTO case_details (case_id, production_line, issue_report_time, issue_reported, action_taken, comments) VALUES (5, 1, '2016-10-23 21:50:23', 'Value above ideal', 'Switched on the actuators', 'Repeated error, action taken');
+
+COMMIT;
+
+
+
+-- -----------------------------------------------------
+-- Data for table DATABASENAME.sensor_table
+-- -----------------------------------------------------
+INSERT INTO sensor_table (sensor_id, sensor_address, sensor_value, sensor_record_time) VALUES (1, '192.168.10.41', 240, '2016-10-23 17:50:23');
+INSERT INTO sensor_table (sensor_id, sensor_address, sensor_value, sensor_record_time) VALUES (2, '192.168.10.42', 230, '2016-10-23 17:50:23');
+INSERT INTO sensor_table (sensor_id, sensor_address, sensor_value, sensor_record_time) VALUES (3, '192.168.10.43', 220, '2016-10-23 17:50:23');
+INSERT INTO sensor_table (sensor_id, sensor_address, sensor_value, sensor_record_time) VALUES (4, '192.168.10.44', 240, '2016-10-23 17:50:23');
+INSERT INTO sensor_table (sensor_id, sensor_address, sensor_value, sensor_record_time) VALUES (5, '192.168.10.45', 200, '2016-10-23 17:50:23');
+INSERT INTO sensor_table (sensor_id, sensor_address, sensor_value, sensor_record_time) VALUES (6, '192.168.10.46', 190, '2016-10-23 17:50:23');
+INSERT INTO sensor_table (sensor_id, sensor_address, sensor_value, sensor_record_time) VALUES (7, '192.168.10.47', 205, '2016-10-23 17:50:23');
+INSERT INTO sensor_table (sensor_id, sensor_address, sensor_value, sensor_record_time) VALUES (8, '192.168.10.48', 208, '2016-10-23 17:50:23');
+INSERT INTO sensor_table (sensor_id, sensor_address, sensor_value, sensor_record_time) VALUES (9, '192.168.10.49', 290, '2016-10-23 17:50:23');
+INSERT INTO sensor_table (sensor_id, sensor_address, sensor_value, sensor_record_time) VALUES (10, '192.168.10.50', 280, '2016-10-23 17:50:23');
+INSERT INTO sensor_table (sensor_id, sensor_address, sensor_value, sensor_record_time) VALUES (11, '192.168.10.51', 270, '2016-10-23 17:50:23');
+INSERT INTO sensor_table (sensor_id, sensor_address, sensor_value, sensor_record_time) VALUES (12, '192.168.10.52', 285, '2016-10-23 17:50:23');
+INSERT INTO sensor_table (sensor_id, sensor_address, sensor_value, sensor_record_time) VALUES (13, '192.168.10.53', 310, '2016-10-23 17:50:23');
+INSERT INTO sensor_table (sensor_id, sensor_address, sensor_value, sensor_record_time) VALUES (14, '192.168.10.54', 335, '2016-10-23 17:50:23');
+INSERT INTO sensor_table (sensor_id, sensor_address, sensor_value, sensor_record_time) VALUES (15, '192.168.10.55', 330, '2016-10-23 17:50:23');
+INSERT INTO sensor_table (sensor_id, sensor_address, sensor_value, sensor_record_time) VALUES (16, '192.168.10.56', 340, '2016-10-23 17:50:23');
+
+COMMIT;
+
+
+-- -------------------------------------------------------------------------------
+-- Individual sensor data value selection from table DATABASENAME.sensor_table
+-- -------------------------------------------------------------------------------
+
+ select sensor_id, sensor_value from sensor_table where sensor_id=1;
+
+
+
+
+
+-- --------------------------------------------------------------------------------------------
+-- Maximum sensor data value selection in a Production Line from table DATABASENAME.sensor_table
+-- --------------------------------------------------------------------------------------------
+
+
+-----Production Line 1
+select sensor_id, sensor_value from sensor_table where sensor_value= (select MAX(sensor_value) from sensor_table where sensor_id IN (1,2,3,4)) LIMIT 1;
+
+
+-----Production Line 2
+select sensor_id, sensor_value from sensor_table where sensor_value= (select MAX(sensor_value) from sensor_table where sensor_id IN (5,6,7,8)) LIMIT 1;
+
+
+-----Production Line 3
+select sensor_id, sensor_value from sensor_table where sensor_value= (select MAX(sensor_value) from sensor_table where sensor_id IN (9,10,11,12)) LIMIT 1;
+
+
+-----Production Line 4
+select sensor_id, sensor_value from sensor_table where sensor_value= (select MAX(sensor_value) from sensor_table where sensor_id IN (13,14,15,16)) LIMIT 1;
+
+
+
+
+
+
+-- ---------------------------------------------------------------------------------------------
+-- Minimum sensor data value selection in a Production Line from table DATABASENAME.sensor_table
+-- ---------------------------------------------------------------------------------------------
+
+
+-----Production Line 1
+select sensor_id, sensor_value from sensor_table where sensor_value= (select MIN(sensor_value) from sensor_table where sensor_id IN (1,2,3,4));
+
+
+-----Production Line 2
+select sensor_id, sensor_value from sensor_table where sensor_value= (select MIN(sensor_value) from sensor_table where sensor_id IN (5,6,7,8));
+
+
+-----Production Line 3
+select sensor_id, sensor_value from sensor_table where sensor_value= (select MIN(sensor_value) from sensor_table where sensor_id IN (9,10,11,12));
+
+
+-----Production Line 4
+select sensor_id, sensor_value from sensor_table where sensor_value= (select MIN(sensor_value) from sensor_table where sensor_id IN (13,14,15,16));
+
+
+
+
+
+
+
+
+-- ---------------------------------------------------------------------------------------------
+-- Average sensor data value selection in a Production Line from table DATABASENAME.sensor_table
+-- ---------------------------------------------------------------------------------------------
+
+-----Production Line 1
+ select AVG(sensor_value) from sensor_table where sensor_id IN(1,2,3,4);
+
+
+-----Production Line 2
+select AVG(sensor_value) from sensor_table where sensor_id IN(5,6,7,8);
+
+
+-----Production Line 3
+select AVG(sensor_value) from sensor_table where sensor_id IN(9,10,11,12);
+
+
+-----Production Line 4
+select AVG(sensor_value) from sensor_table where sensor_id IN(13,14,15,16);
+
+
+
+
+
+
+
+
+
+
+-- ----------------------------------------------------------------------------------------------------------------
+-- Custom monitoring: Maximum sensor data value selection in a Production Line from table DATABASENAME.sensor_table
+-- ----------------------------------------------------------------------------------------------------------------
+
+
+select sensor_id, sensor_value from sensor_table where sensor_value= (select MAX(sensor_value) from sensor_table where sensor_id IN (1,5,6,8,9));
+
+
+
+
+
+-- ----------------------------------------------------------------------------------------------------------------
+-- Custom monitoring: Minimum sensor data value selection in a Production Line from table DATABASENAME.sensor_table
+-- ----------------------------------------------------------------------------------------------------------------
+
+
+select sensor_id, sensor_value from sensor_table where sensor_value= (select MIN(sensor_value) from sensor_table where sensor_id IN (1,5,6,8,9));
+
+
+
+
+-- ---------------------------------------------------------------------------------------------------------------
+-- Custom monitoring: Average sensor data value selection in a Production Line from table DATABASENAME.sensor_table
+-- ---------------------------------------------------------------------------------------------------------------
+
+
+ select AVG(sensor_value) from sensor_table where sensor_id IN(1,5,6,8,9);
+
+
+
+
+
+
+-- ---------------------------------------------------------------------------------------------------------------
+-- Display list of existing log cases from table DATABASENAME.case_details
+-- ---------------------------------------------------------------------------------------------------------------
+
+select case_id, production_line, issue_report_time from case_details;
+
+
+
+
+
+
+-- ---------------------------------------------------------------------------------------------------------------
+-- Display details of a particular log case from table DATABASENAME.case_details
+-- ---------------------------------------------------------------------------------------------------------------
+
+select * from case_details where case_id = 5;
+
+
+
+
+------------------------------------------------------------
+ALTER Table to set default timestamp values
+------------------------------------------------------------
+ALTER TABLE case_details MODIFY COLUMN issue_report_time TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP;
+
+
+------------------------------------------------------------
+ALTER Table to set default auto_increment
+------------------------------------------------------------
+
+ALTER TABLE case_details MODIFY COLUMN case_id INT auto_increment;

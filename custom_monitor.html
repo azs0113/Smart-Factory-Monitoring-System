@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html >
+  <head>
+    <meta charset="UTF-8">
+    <title>Custom monitoring menu</title>   
+        <link rel="stylesheet" href="css/style.css">    
+  </head>
+	<h1> <img src="aulogo.png" alt= "AU Logo">
+		Smart Factory Monitoring System
+	</h1>
+  <body>
+
+    
+	
+	<div class="form" >
+		<form class="menu-form" action = "custom_monitor_display.php" method = "get">
+			<p align="left"><b>Admin, Please select sensors to do custom monitoring </b></p>
+			<div class= "example">
+				<select onchange="selectSensor(this);" class = "options">
+				 <option value="1">Sensor ID 1</option>
+				 <option value="2">Sensor ID 2</option>
+				 <option value="3">Sensor ID 3</option>
+				 <option value="6">Sensor ID 6</option>
+				 <option value="7">Sensor ID 7</option>
+				 <option value="8">Sensor ID 8</option>
+				 <option value="9">Sensor ID 9</option>
+				 <option value="10">Sensor ID 10</option>
+				 <option value="11">Sensor ID 11</option>
+				 <option value="12">Sensor ID 12</option>
+				 <option value="13">Sensor ID 13</option>
+				 <option value="14">Sensor ID 14</option>
+				</select>
+				<!-- <img src="add.png" alt="Add" style="vertical-align: left;" onclick="selectSensor($(this).prev().get(0));" /> --> 
+			<ul class = "options">
+				<li title="click to remove" onclick="this.parentNode.removeChild(this);">
+				<input type="hidden" name="sensors[]" value="1" />
+				Sensor ID 1
+				</li>
+				<li title="click to remove" onclick="this.parentNode.removeChild(this);">
+				<input type="hidden" name="sensors[]" value="2" />
+				Sensor ID 2
+				</li>
+				<li title="click to remove" onclick="this.parentNode.removeChild(this);">
+				<input type="hidden" name="sensors[]" value="3" />
+				Sensor ID 3
+				</li>
+				<li title="click to remove" onclick="this.parentNode.removeChild(this);">
+				<input type="hidden" name="sensors[]" value="6" />
+				Sensor ID 6
+				</li>
+				<li title="click to remove" onclick="this.parentNode.removeChild(this);">
+				<input type="hidden" name="sensors[]" value="7" />
+				Sensor ID 7
+				</li>
+				<li title="click to remove" onclick="this.parentNode.removeChild(this);">
+				<input type="hidden" name="sensors[]" value="8" />
+				Sensor ID 8
+				</li>
+				<li title="click to remove" onclick="this.parentNode.removeChild(this);">
+				<input type="hidden" name="sensors[]" value="9" />
+				Sensor ID 9
+				</li>
+				<li title="click to remove" onclick="this.parentNode.removeChild(this);">
+				<input type="hidden" name="sensors[]" value="10" />
+				Sensor ID 10
+				</li>
+				<li title="click to remove" onclick="this.parentNode.removeChild(this);">
+				<input type="hidden" name="sensors[]" value="11" />
+				Sensor ID 11
+				</li>
+				<li title="click to remove" onclick="this.parentNode.removeChild(this);">
+				<input type="hidden" name="sensors[]" value="12" />
+				Sensor ID 12
+				</li>
+				<li title="click to remove" onclick="this.parentNode.removeChild(this);">
+				<input type="hidden" name="sensors[]" value="13" />
+				Sensor ID 13
+				</li>
+				<li title="click to remove" onclick="this.parentNode.removeChild(this);">
+				<input type="hidden" name="sensors[]" value="14" />
+				Sensor ID 14
+				</li>
+				</ul>
+				
+			</div>			
+			<!-- <p>Group Name:</p> 
+			</p><input type="text" name="sensorId"> -->
+			<br><br>
+			<button input type="submit" value="Submit">Submit</button>
+		</form>
+	</div>
+
+<!--     <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+ -->
+        <script src="js/index.js"></script>
+
+    
+    
+    
+  </body>
+</html>
