@@ -1,1 +1,4 @@
-# Smart-Factory-Monitoring-System
+## Smart-Factory-Monitoring-System
+
+With the advent of IoT, a smart factory monitoring solution for continuously monitoring environment variables such as light intensity values become vital and helps ensure quality of production in big companies. An example application for this is the Smart Factory Monitoring System (SFMS) which monitors and records light intensity values using sensor technologies throughout the factory for multiple production lines that would affect the critical processes and working conditions. SFMS provides an interactive Graphical User Interface for the smart factory administrator to proactively monitor manufacturing production lines’ light sensor values and sends alerts that keeps key people notified and informed. Overall, this application accomplishes two goals: providing insights of production line’s health and
+allowing the administrator to make objective data-driven decisions.
